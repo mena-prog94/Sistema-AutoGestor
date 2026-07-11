@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class VehiculosService {
   // URL real de tu archivo PHP en tu servidor local
-  private apiUrl = 'http://localhost/ProyectoFinal/vehiculos.php'; 
+  private apiUrl = 'http://192.168.1.6/ProyectoFinal/vehiculos.php';
 
   constructor(private http: HttpClient) {}
 

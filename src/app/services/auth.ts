@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class AuthService {
   // URL base apuntando a la carpeta de tu backend local
-  private apiUrl = 'http://localhost/ProyectoFinal'; 
+  private apiUrl = 'http://192.168.1.6/ProyectoFinal';
   private currentUser: any = null;
 
   constructor(private http: HttpClient) {}
