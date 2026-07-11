@@ -1,0 +1,103 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="glass-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button 
+        defaultHref="/vehiculos" 
+        text="Vehículos" 
+        icon="chevron-back-outline"
+        class="btn-volver-neon">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title class="titulo-custom-contenedor">
+      <div class="header-dinamico">
+        <span class="titulo-gradiente">Componentes & Repuestos</span>
+        <span class="contador-pildora-neon" *ngIf="!cargando">
+          {{ piezas.length }} {{ piezas.length === 1 ? 'unidad' : 'unidades' }}
+        </span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="dark-bg">
+  <div class="main-container">
+
+    <div class="action-bar-container">
+      <div class="search-box-neon">
+        <ion-searchbar 
+          placeholder="Buscar por nombre, código o categoría..." 
+          animated="true"
+          debounce="300"
+          (ionInput)="buscarPiezas($event)">
+        </ion-searchbar>
+      </div>
+      
+      <ion-button class="btn-agregar-neon" (click)="abrirModalAgregar()">
+        <ion-icon slot="start" name="add-outline"></ion-icon>
+        Agregar Piezas
+      </ion-button>
+    </div>
+
+    <div class="spinner-container" *ngIf="cargando">
+      <ion-spinner name="crescent" color="cyan-neon"></ion-spinner>
+      <p>Consultando almacén...</p>
+    </div>
+
+    <div class="no-results" *ngIf="piezas.length === 0 && !cargando">
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <p>No se encontraron componentes que coincidan con la búsqueda.</p>
+    </div>
+
+    <ion-grid class="ion-no-padding" *ngIf="!cargando">
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="4" *ngFor="let pieza of piezas">
+          
+          <div class="glass-card" 
+               [class.neon-critical]="pieza.stock < 5"
+               [class.neon-suspension]="pieza.categoria === 'Suspensión' && pieza.stock >= 5"
+               [class.neon-frenos]="pieza.categoria === 'Frenos' && pieza.stock >= 5"
+               [class.neon-motor]="pieza.categoria === 'Motor' && pieza.stock >= 5"
+               [class.neon-electrico]="pieza.categoria === 'Eléctrico' && pieza.stock >= 5">
+            
+            <div class="card-header">
+              <span class="badge-sku">{{ pieza.codigo }}</span>
+              <span class="badge-stock" [class.low-stock]="pieza.stock < 5">
+                {{ pieza.stock }} disp.
+              </span>
+            </div>
+
+            <h3 class="pieza-title">{{ pieza.nombre }}</h3>
+            
+            <p class="pieza-cat">
+              <ion-icon name="layers-outline" class="icon-dinamico"></ion-icon>
+              {{ pieza.categoria }}
+            </p>
+
+            <div class="card-footer">
+              <span class="pieza-price">RD$ {{ pieza.precio | number:'1.2-2' }}</span>
+              <span class="pieza-location">
+                <ion-icon name="location-outline" class="icon-dinamico"></ion-icon>
+                {{ pieza.ubicacion_almacen }}
+              </span>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
+              <ion-button size="small" fill="clear" color="primary" (click)="editarPieza(pieza)" style="font-weight: 600;">
+                <ion-icon slot="start" name="pencil-outline"></ion-icon>
+                Editar
+              </ion-button>
+              <ion-button size="small" fill="clear" color="danger" (click)="eliminarPieza(pieza.id)" style="font-weight: 600;">
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+                Eliminar
+              </ion-button>
+            </div>
+
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+</ion-content>

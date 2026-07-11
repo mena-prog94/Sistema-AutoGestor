@@ -1,0 +1,345 @@
+// =============================================================================
+// BASES Y CONTENEDOR GENERAL (ESTILO PREMIUM DARK)
+// =============================================================================
+.dark-bg {
+  --background: #020b1e !important; // Azul profundo exacto de fondo
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #ffffff;
+}
+
+.main-container {
+  padding: 24px 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// =============================================================================
+// BARRA DE BÚSQUEDA INTEGRADA A TUS INPUTS
+// =============================================================================
+.search-box-neon {
+  margin-bottom: 32px;
+
+  ion-searchbar {
+    --background: #091326 !important; // Mismo fondo oscuro de tus inputs
+    --color: #ffffff !important;
+    --placeholder-color: #5c6e8c !important;
+    --icon-color: #00f2fe !important; // Icono de lupa neón
+    --border-radius: 6px !important; // Redondeado idéntico corregido
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+
+    &::part(searchbar-input) {
+      background: #091326 !important;
+      color: #ffffff !important;
+    }
+
+    // Efecto Neon Focus al hacer clic para buscar
+    &:focus-within {
+      border-color: rgba(0, 242, 254, 0.6);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+// =============================================================================
+// ESTRUCTURA BASE DE LAS TARJETAS (ESTILO CAJAS DEL FORMULARIO)
+// =============================================================================
+ion-grid {
+  ion-col {
+    padding: 10px;
+  }
+}
+
+.glass-card {
+  background: #061024 !important; // Gris oscuro premium de tus paneles
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  border-left: 4px solid #8fa0be; // Borde neutro inicial
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+// =============================================================================
+// JUEGO DE COLORES NEÓN DINÁMICOS SEGÚN KPIs
+// =============================================================================
+
+// ⚠️ Estado Crítico -> Stock Bajo (< 5) -> Resplandor Amarillo/Naranja (KPI Mantenimiento)
+.neon-critical {
+  border-left-color: #ffa500 !important;
+  .icon-dinamico { color: #ffa500 !important; }
+  
+  &:hover {
+    border-color: rgba(255, 165, 0, 0.4);
+    box-shadow: 0 8px 25px rgba(255, 165, 0, 0.2);
+  }
+}
+
+// 💎 Categoría Suspensión -> Resplandor Cian Neón (KPI Disponibles)
+.neon-suspension {
+  border-left-color: #00f2fe !important;
+  .icon-dinamico { color: #00f2fe !important; }
+
+  &:hover {
+    border-color: rgba(0, 242, 254, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 242, 254, 0.2);
+  }
+}
+
+// 🔮 Categorías Frenos y Eléctrico -> Resplandor Morado Neón (KPI Vendidos)
+.neon-frenos, .neon-electrico {
+  border-left-color: #7f00ff !important;
+  .icon-dinamico { color: #7f00ff !important; }
+
+  &:hover {
+    border-color: rgba(127, 0, 255, 0.4);
+    box-shadow: 0 8px 25px rgba(127, 0, 255, 0.2);
+  }
+}
+
+// ⚡ Categoría Motor y otros -> Resplandor Azul Eléctrico / Acuamarina
+.neon-motor {
+  border-left-color: #00b4db !important;
+  .icon-dinamico { color: #00b4db !important; }
+
+  &:hover {
+    border-color: rgba(0, 180, 219, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 180, 219, 0.18);
+  }
+}
+
+// =============================================================================
+// COMPONENTES DETALLES INTERNOS
+// =============================================================================
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.badge-sku {
+  color: #4a5a75;
+  font-size: 0.8rem;
+  font-family: monospace;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.badge-stock {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  &.low-stock {
+    background: rgba(255, 165, 0, 0.1) !important;
+    color: #ffa500 !important;
+    border: 1px solid rgba(255, 165, 0, 0.3) !important;
+  }
+}
+
+.pieza-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.pieza-cat {
+  font-size: 0.85rem;
+  color: #8fa0be;
+  margin: 0 0 18px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 14px;
+}
+
+.pieza-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.pieza-location {
+  font-size: 0.8rem;
+  color: #5c6e8c;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+// Spinner e interfaces auxiliares de carga
+ion-spinner[color="cyan-neon"] {
+  --color: #00f2fe;
+}
+.spinner-container {
+  text-align: center;
+  padding: 40px 0;
+  color: #8fa0be;
+  p { margin-top: 12px; }
+}
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: #5c6e8c;
+  ion-icon { font-size: 3rem; color: #7f00ff; margin-bottom: 12px; }
+}
+// =============================================================================
+// REPOSITORIO DE ESTILOS PARA LA BARRA DE NAVEGACIÓN SUPERIOR
+// =============================================================================
+
+.glass-toolbar {
+  --background: #020b1e !important; // Mismo fondo oscuro base de la aplicación
+  --border-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+}
+
+// Botón de retroceso estilizado "Vehículos"
+.btn-volver-neon {
+  --color: #8fa0be !important; // Color base atenuado
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  &::part(native) {
+    color: #8fa0be !important;
+  }
+
+  &:hover {
+    --color: #00f2fe !important; // Cambia a cian neón al pasar el cursor
+    transform: translateX(-2px);
+  }
+}
+
+// Contenedor flexible del título y la píldora de unidades
+.header-dinamico {
+  display: flex;
+  align-items: center;
+  gap: 12px; // Separación equilibrada entre el título y el contador
+}
+
+// Texto principal "Componentes & Repuestos" con sutil brillo
+.titulo-gradiente {
+ font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  text-shadow: 0 0 12px rgba(0, 180, 255, 0.6);
+}
+// Píldora Neón Dinámica (Efecto "20 unidades")
+.contador-pildora-neon {
+  background: rgba(0, 242, 254, 0.08) !important; // Fondo cian muy sutil y limpio
+  color: #00f2fe !important; // Texto cian neón encendido
+  padding: 4px 10px;
+  border-radius: 20px; // Bordes completamente redondeados estilo píldora
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(0, 242, 254, 0.3); // Borde brillante definido
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.15); // Destello perimetral
+}
+// =============================================================================
+// BARRA DE ACCIONES FLEXIBLE (BÚSQUEDA + ACCIÓN)
+// =============================================================================
+.action-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 16px; // Espacio entre el input y el botón
+  margin-bottom: 32px;
+  width: 100%;
+
+  // En pantallas móviles el botón se coloca abajo automáticamente si no cabe
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}
+
+.search-box-neon {
+  flex: 1; // Toma todo el espacio sobrante horizontal
+  margin-bottom: 0px; // Reset del margen anterior para alineación
+
+  ion-searchbar {
+    --background: #091326 !important;
+    --color: #ffffff !important;
+    --placeholder-color: #5c6e8c !important;
+    --icon-color: #00f2fe !important;
+    --border-radius: 6px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+
+    &::part(searchbar-input) {
+      background: #091326 !important;
+      color: #ffffff !important;
+    }
+
+    &:focus-within {
+      border-color: rgba(0, 242, 254, 0.6);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+// NUEVO: Botón dinámico Agregar Piezas
+.btn-agregar-neon {
+  --height: 44px; // Sincronizado milimétricamente con la altura del buscador
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  --border-radius: 6px;
+  // Gradiente invertido para diferenciarlo de los inputs base
+  --background: linear-gradient(135deg, #7209b7 0%, #00b4d8 100%) !important;
+  box-shadow: 0 4px 15px rgba(114, 9, 183, 0.25);
+  margin: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &::part(native) {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  ion-icon {
+    font-size: 1.2rem;
+    margin-right: 6px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 180, 219, 0.4);
+    filter: brightness(1.15);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// REPOSITORIO DE ESTILOS EXISTENTES (Conservar abajo)...
+.dark-bg { /* ... */ }
+.glass-card { /* ... */ }

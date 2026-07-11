@@ -1,0 +1,121 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="glass-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button 
+        defaultHref="/piezas" 
+        text="Piezas" 
+        icon="chevron-back-outline"
+        class="btn-volver-neon"
+        (click)="cerrar()">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title class="titulo-custom-contenedor">
+      <div class="header-dinamico">
+        <ion-icon name="build-outline" class="icon-header-neon"></ion-icon>
+        <span class="titulo-gradiente">
+          {{ esModoEdicion ? 'Modificar Componente' : 'Registrar Componente' }}
+        </span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="dark-bg">
+  <div class="main-container form-container">
+    
+    <form [formGroup]="piezaForm" (ngSubmit)="guardarPieza()">
+      
+      <div class="input-box-neon" [class.input-error]="isValid('codigo')">
+        <label>Código / SKU de la Pieza</label>
+        <ion-input 
+          formControlName="codigo" 
+          placeholder="Ej: PZ-1021" 
+          type="text">
+        </ion-input>
+        <span class="error-text" *ngIf="isValid('codigo')">El código es obligatorio.</span>
+      </div>
+
+      <div class="input-box-neon" [class.input-error]="isValid('nombre')">
+        <label>Nombre del Componente</label>
+        <ion-input 
+          formControlName="nombre" 
+          placeholder="Ej: Pastillas de Freno Traseras" 
+          type="text">
+        </ion-input>
+        <span class="error-text" *ngIf="isValid('nombre')">El nombre es requerido.</span>
+      </div>
+
+      <div class="input-box-neon" [class.input-error]="isValid('categoria')">
+        <label>Categoría del Sistema</label>
+        <ion-select 
+          formControlName="categoria" 
+          placeholder="Selecciona una categoría" 
+          interface="popover" 
+          class="custom-select">
+          <ion-select-option value="Suspensión">Suspensión</ion-select-option>
+          <ion-select-option value="Frenos">Frenos</ion-select-option>
+          <ion-select-option value="Motor">Motor</ion-select-option>
+          <ion-select-option value="Eléctrico">Eléctrico</ion-select-option>
+          <ion-select-option value="Enfriamiento">Enfriamiento</ion-select-option>
+          <ion-select-option value="Inyección">Inyección</ion-select-option>
+          <ion-select-option value="Transmisión">Transmisión</ion-select-option>
+          <ion-select-option value="Iluminación">Iluminación</ion-select-option>
+        </ion-select>
+        <span class="error-text" *ngIf="isValid('categoria')">Debe seleccionar una categoría.</span>
+      </div>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="6" class="ion-padding-end">
+            <div class="input-box-neon" [class.input-error]="isValid('stock')">
+              <label>Cantidad (Stock)</label>
+              <ion-input 
+                formControlName="stock" 
+                placeholder="0" 
+                type="number">
+              </ion-input>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="input-box-neon" [class.input-error]="isValid('precio')">
+              <label>Precio Unitario (RD$)</label>
+              <ion-input 
+                formControlName="precio" 
+                placeholder="0.00" 
+                type="number" 
+                step="0.01">
+              </ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="input-box-neon" [class.input-error]="isValid('ubicacion_almacen')">
+        <label>Ubicación Física en Almacén</label>
+        <ion-input 
+          formControlName="ubicacion_almacen" 
+          placeholder="Ej: Pasillo A - Estante 3" 
+          type="text">
+        </ion-input>
+        <span class="error-text" *ngIf="isValid('ubicacion_almacen')">La ubicación ayuda al control logístico.</span>
+      </div>
+
+      <div class="btn-container">
+        <ion-button 
+          type="submit" 
+          class="btn-guardar-neon" 
+          [disabled]="piezaForm.invalid || guardando">
+          <ion-icon slot="start" name="cloud-upload-outline" *ngIf="!guardando"></ion-icon>
+          <ion-spinner name="crescent" *ngIf="guardando" color="light"></ion-spinner>
+          
+          {{ guardando 
+              ? (esModoEdicion ? 'Actualizando...' : 'Registrando pieza...') 
+              : (esModoEdicion ? 'ACTUALIZAR COMPONENTE' : 'GUARDAR REGISTRO') 
+          }}
+        </ion-button>
+      </div>
+
+    </form>
+  </div>
+</ion-content>

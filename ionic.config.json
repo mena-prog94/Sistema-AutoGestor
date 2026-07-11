@@ -1,0 +1,7 @@
+{
+  "name": "sistema-auto-gestor",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

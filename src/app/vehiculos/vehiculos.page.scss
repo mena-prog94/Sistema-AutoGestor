@@ -1,0 +1,305 @@
+:host {
+  --neon-cyan: #00b4d8;
+  --neon-purple: #7209b7;
+  --bg-dark-glass: rgba(15, 25, 40, 0.65);
+  --border-glass: rgba(255, 255, 255, 0.05);
+}
+
+ion-content {
+  --background: linear-gradient(135deg, #001f3f 0%, #002b5c 50%, #001f3f 100%) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 16px;
+}
+
+.transparent-toolbar {
+  --background: rgba(10, 20, 35, 0.5) !important;
+  --color: #ffffff;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 180, 255, 0.15);
+  padding: 6px 12px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+}
+
+.dynamic-title {
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  text-shadow: 0 0 12px rgba(0, 180, 255, 0.6);
+
+}
+
+// NUEVO: Botón de navegación premium adaptado al Almacén
+.btn-navegacion-neon {
+  --background: rgba(255, 255, 255, 0.04) !important;
+  --color: #8fa0be !important;
+  --border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 200;
+  margin-right: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+
+  &::part(native) {
+    color: #8fa0be !important;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  ion-icon {
+    color: #00f2fe !important;
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    --color: #ffffff !important;
+    border-color: rgba(0, 242, 254, 0.5);
+    box-shadow: 0 0 14px rgba(0, 242, 254, 0.25);
+    transform: translateY(-1px);
+
+    &::part(native) {
+      color: #ffffff !important;
+    }
+  }
+}
+
+.form-container {
+  background: var(--bg-dark-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 30px 24px;
+  max-width: 650px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 180, 255, 0.15);
+  margin: 20px auto;
+  animation: dynamicFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+ion-item {
+  max-width: 100%;
+  margin-bottom: 16px;
+  --background: rgba(7, 15, 28, 0.6) !important;
+  --border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &::part(native) {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 180, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 180, 255, 0.15);
+  }
+
+  &:focus-within {
+    transform: translateY(-2px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 180, 255, 0.35);
+  }
+}
+
+ion-input, ion-select {
+  --color: #ffffff !important;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.guardar-btn {
+  max-width: 100%;
+  width: 100%;
+  height: 48px;
+  margin: 24px auto 0 auto;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  --border-radius: 12px;
+  --background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 100%) !important;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(114, 9, 183, 0.3);
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 180, 255, 0.5);
+    filter: brightness(1.1);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.vehiculo-card {
+  background: rgba(12, 22, 38, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-left: 4px solid var(--neon-cyan);
+  border-radius: 14px;
+  max-width: 650px;
+  width: 100%;
+  margin: 16px auto;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: dynamicFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.45), 0 0 15px rgba(0, 180, 255, 0.1);
+  }
+
+  ion-card-title {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  ion-card-subtitle {
+    color: var(--neon-cyan);
+    font-weight: 600;
+    letter-spacing: 0.8px;
+  }
+
+  ion-card-content {
+    p {
+      margin-bottom: 8px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      
+      strong {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.no-data {
+  text-align: center;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: 40px;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  animation: dynamicFadeIn 1s ease-in-out;
+}
+
+@keyframes dynamicFadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(24px) scale(0.98); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+.metrics-grid {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  max-width: 650px;
+  width: 100%;
+  margin: 10px auto 15px auto;
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.metric-card {
+  flex: 1;
+  background: rgba(15, 25, 40, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  animation: dynamicFadeIn 0.6s ease-out forwards;
+
+  ion-icon {
+    font-size: 28px;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+
+    .count {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .label {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+  }
+
+  &.disponible {
+    border-bottom: 3px solid #00f5d4;
+    ion-icon { color: #00f5d4; filter: drop-shadow(0 0 6px rgba(0, 245, 212, 0.4)); }
+  }
+
+  &.vendido {
+    border-bottom: 3px solid #7209b7;
+    ion-icon { color: #7209b7; filter: drop-shadow(0 0 6px rgba(114, 9, 183, 0.4)); }
+  }
+
+  &.mantenimiento {
+    border-bottom: 3px solid #ffb703;
+    ion-icon { color: #ffb703; filter: drop-shadow(0 0 6px rgba(255, 183, 3, 0.4)); }
+  }
+}
+// =============================================================================
+// BARRA DE BÚSQUEDA INTEGRADA ESTILO PREMIUM AUTO GESTOR
+// =============================================================================
+.search-box-neon {
+  max-width: 650px;
+  width: 100%;
+  margin: 14px auto 8px auto;
+  padding: 0;
+
+  ion-searchbar {
+    --background: #091326 !important; // Fondo idéntico de tus inputs superiores
+    --color: #ffffff !important;
+    --placeholder-color: #5c6e8c !important;
+    --icon-color: #00f2fe !important; // Icono de lupa color cian neón encendido
+    --border-radius: 12px !important; // Sincronizado con tus inputs de marcas
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &::part(searchbar-input) {
+      background: #091326 !important;
+      color: #ffffff !important;
+    }
+
+    // Efecto encendido perimetral al interactuar
+    &:focus-within {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 180, 255, 0.35), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+      transform: translateY(-1px);
+    }
+  }
+}

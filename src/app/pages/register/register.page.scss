@@ -1,0 +1,116 @@
+// Fondo con el gradiente neón unificado
+.register-bg {
+  --background: var(--bg-gradient);
+}
+
+// Configuración de la barra superior transparente para que no rompa el diseño oscuro
+.transparent-toolbar {
+  --background: transparent;
+  --color: #ffffff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dynamic-title-small {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+// Contenedor centrado idéntico al del Login
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
+
+// Tarjeta con el efecto Glassmorphism
+.register-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--card-glass) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  margin: 0;
+}
+
+.brand-header {
+  text-align: center;
+  padding: 24px 0 12px 0;
+
+  .brand-icon-wrapper {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(244, 63, 94, 0.2));
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 12px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+    
+    ion-icon {
+      font-size: 38px;
+      color: var(--accent-purple); // En el registro resalta más el púrpura
+    }
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-top: 6px;
+  }
+}
+
+// Inputs interactivos con enfoque reactivo de color
+.input-group {
+  margin-bottom: 16px;
+
+  .custom-item {
+    --background: rgba(2, 6, 23, 0.6);
+    --border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Los campos brillan en color púrpura neón al ser seleccionados */
+    &:focus-within {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.15);
+      transform: translateY(-2px);
+    }
+  }
+
+  .input-icon {
+    color: #64748b;
+    margin-right: 8px;
+  }
+
+  ion-input {
+    color: #ffffff;
+    --placeholder-color: #64748b;
+    font-size: 0.95rem;
+  }
+}
+
+// Botón dinámico consistente
+.register-btn {
+  --background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+  --background-activated: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
+  --border-radius: 14px;
+  height: 50px;
+  font-weight: 700;
+  margin-top: 20px;
+  box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3);
+  transition: transform 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

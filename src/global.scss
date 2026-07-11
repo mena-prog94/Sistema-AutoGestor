@@ -1,0 +1,121 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  
+  .brand-icon {
+    font-size: 80px;
+    margin-bottom: 10px;
+  }
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.text-muted {
+  font-size: 0.9em;
+  color: var(--ion-color-medium);
+}
+
+.rounded-list {
+  border-radius: 12px;
+  overflow: hidden;
+}
+:root {
+  /* Paleta de colores ultra-moderna (Tendencia 2026) */
+  --bg-gradient: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0f172a 50%, #020617 100%);
+  --accent-cyan: #06b6d4;
+  --accent-purple: #a855f7;
+  --accent-pink: #f43f5e;
+  --card-glass: rgba(15, 23, 42, 0.45);
+  
+  /* Gradiente dinámico texturizado */
+  --text-gradient: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+}
+
+/* Animación de pulso de luz de fondo */
+@keyframes fluidPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Clase global para textos futuristas */
+.dynamic-title {
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+html, body, ion-app, ion-router-outlet {
+  height: 100% !important;
+  min-height: 100vh !important;
+  margin: 0;
+  padding: 0;
+  background-color: #0d0e12; // Evita el parpadeo blanco al cambiar de dispositivo
+}
+
+/* Corrección para que el contenedor de rejilla interna (Grid) 
+   aproveche todo el ancho en dispositivos móviles pequeños */
+@media (max-width: 576px) {
+  .main-container {
+    padding: 12px 8px !important; // Optimiza espacio en pantallas pequeñas
+  }
+  
+  .action-bar-container {
+    flex-direction: column; // Si tienes buscador y botón juntos, los apila limpiamente
+    gap: 10px;
+    width: 100%;
+    
+    .search-box-neon, .btn-agregar-neon {
+      width: 100% !important;
+    }
+  }
+}

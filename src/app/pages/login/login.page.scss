@@ -1,0 +1,215 @@
+:host {
+  --neon-cyan: #00b4d8;
+  --neon-purple: #7209b7;
+  --bg-dark-glass: rgba(15, 25, 40, 0.65);
+  --border-glass: rgba(255, 255, 255, 0.05);
+}
+
+// =============================================================================
+// FONDO GENERAL CON GRADIENTE PREMIUM DARK
+// =============================================================================
+.login-bg {
+  --background: linear-gradient(135deg, #001f3f 0%, #002b5c 50%, #001f3f 100%) !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+// Contenedor centrado flexible
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 16px;
+}
+
+// =============================================================================
+// TARJETA DE LOGIN CON EFECTO GLASSMORPHISM Y BORDE DEGRADADO
+// =============================================================================
+.login-card {
+  background: var(--bg-dark-glass) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 24px 16px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 180, 255, 0.1);
+  margin: 0;
+  animation: loginFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  border-top: 4px solid var(--neon-cyan); // Detalle superior neón cian
+}
+
+// =============================================================================
+// CABECERA DE MARCA (BRANDING)
+// =============================================================================
+.brand-header {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 24px;
+
+  .brand-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    background: rgba(7, 15, 28, 0.6);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px auto;
+    box-shadow: 0 0 15px rgba(0, 180, 255, 0.2);
+
+    ion-icon {
+      font-size: 42px;
+      color: #00f2fe !important; // Icono cian neón encendido
+    }
+  }
+
+  h2 {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0 0 6px 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+
+  p {
+    color: #8fa0be;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+// =============================================================================
+// CAMPOS DE ENTRADA (INPUTS) ESTILO DEGRADADO / AUTO GESTOR
+// =============================================================================
+.input-group {
+  margin-bottom: 18px;
+}
+
+.custom-item {
+  --background: #091326 !important; // Color base oscuro sincronizado con tus inputs
+  --border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding-left: 4px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &::part(native) {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .input-icon {
+    color: #5c6e8c; // Apagado por defecto
+    font-size: 1.25rem;
+    margin-right: 12px;
+    transition: color 0.3s ease;
+  }
+
+  ion-input {
+    --color: #ffffff !important;
+    --placeholder-color: #5c6e8c !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    height: 46px;
+  }
+
+  // Hover reactivo
+  &:hover {
+    transform: translateY(-1px);
+    border-color: rgba(0, 180, 255, 0.25);
+  }
+
+  // Focus dinámico con aura Neón
+  &:focus-within {
+    transform: translateY(-1px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 14px rgba(0, 180, 255, 0.3);
+
+    .input-icon {
+      color: #00f2fe; // Icono se enciende al escribir
+    }
+  }
+}
+
+// =============================================================================
+// BOTÓN DE ACCIÓN PRINCIPAL (GRADIENTE NEÓN)
+// =============================================================================
+.login-btn {
+  height: 48px;
+  margin: 28px 0 16px 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  --border-radius: 12px;
+  --background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 100%) !important;
+  box-shadow: 0 4px 15px rgba(114, 9, 183, 0.35);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 180, 255, 0.45);
+    filter: brightness(1.15);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// =============================================================================
+// PIE DE PÁGINA Y ENLACES (SWITCH REGISTER)
+// =============================================================================
+.login-footer {
+  text-align: center;
+  margin-top: 14px;
+
+  p {
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 0;
+
+    a {
+      color: #00f2fe; // Enlace Neón Cyan
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      margin-left: 3px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: #ffffff;
+        text-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
+      }
+    }
+  }
+}
+
+// Animación de entrada suave hacia arriba
+@keyframes loginFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+// ... (Código anterior de los inputs y botones)
+
+// Animación de entrada suave hacia arriba
+@keyframes loginFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} // 👈 ESTA DEBE SER LA ÚLTIMA LLAVE DEL ARCHIVO. Borra cualquier otra que esté por debajo.

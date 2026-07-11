@@ -1,0 +1,137 @@
+.dark-bg {
+  --background: #020b1e !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #ffffff;
+}
+
+.form-container {
+  padding: 30px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.input-box-neon {
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    color: #8fa0be;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  ion-input, .custom-select {
+    --background: #091326 !important;
+    --color: #ffffff !important;
+    --placeholder-color: #4a5a75 !important;
+    --padding-start: 14px !important;
+    background: #091326 !important;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    min-height: 44px;
+    color: white;
+    transition: all 0.3s ease;
+
+    &:focus-within {
+      border-color: rgba(0, 242, 254, 0.7);
+      box-shadow: 0 0 14px rgba(0, 242, 254, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+.input-box-neon.input-error {
+  ion-input, .custom-select {
+    border-color: rgba(255, 21, 89, 0.5) !important;
+    &:focus-within {
+      box-shadow: 0 0 14px rgba(255, 21, 89, 0.25);
+    }
+  }
+  .error-text {
+    color: #ff1559;
+    font-size: 0.75rem;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+}
+
+.custom-select {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: white !important;
+  --placeholder-opacity: 0.6;
+}
+
+.btn-container {
+  margin-top: 35px;
+}
+
+.btn-guardar-neon {
+  --height: 48px;
+  width: 100%;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  --border-radius: 6px;
+  --background: linear-gradient(135deg, #00f2fe 0%, #7f00ff 100%) !important;
+  box-shadow: 0 4px 18 rgba(0, 242, 254, 0.3);
+  margin: 0;
+  transition: all 0.3s ease;
+
+  &:hover:not([disabled]) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(127, 0, 255, 0.45);
+    filter: brightness(1.1);
+  }
+}
+
+.icon-header-neon {
+  color: #00f2fe;
+  font-size: 1.4rem;
+  filter: drop-shadow(0 0 5px rgba(0, 242, 254, 0.6));
+}
+
+// =============================================================================
+// NUEVO: ESTILOS DE LA BARRA SUPERIOR Y BOTÓN DE RETORNO NEÓN
+// =============================================================================
+.glass-toolbar {
+  --background: #020b1e !important;
+  --border-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+}
+
+.btn-volver-neon {
+  --color: #8fa0be !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  &::part(native) {
+    color: #8fa0be !important;
+  }
+
+  &:hover {
+    --color: #00f2fe !important;
+    transform: translateX(-3px); // Animación hacia la izquierda
+  }
+}
+
+.header-dinamico {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titulo-gradiente {
+ font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  text-shadow: 0 0 12px rgba(0, 180, 255, 0.6);
+}

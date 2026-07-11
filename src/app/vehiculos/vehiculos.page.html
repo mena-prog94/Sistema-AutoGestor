@@ -1,0 +1,168 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar class="transparent-toolbar">
+    <ion-title class="dynamic-title">
+      Auto Gestor (Vehiculos)
+    </ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button class="btn-navegacion-neon" routerLink="/piezas" routerDirection="forward">
+        <ion-icon name="cube-outline" [slot]="'icon-only'"></ion-icon>
+        <span class="ion-hide-sm-down" style="margin-left: 4px;">Piezas</span>
+      </ion-button>
+      
+      <ion-button (click)="confirmarSalida()" color="danger" fill="clear">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="metrics-grid">
+    <div class="metric-card disponible">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+      <div class="info">
+        <span class="count">{{ totalDisponibles }}</span>
+        <span class="label">Disponibles</span>
+      </div>
+    </div>
+
+    <div class="metric-card vendido">
+      <ion-icon name="cart-outline"></ion-icon>
+      <div class="info">
+        <span class="count">{{ totalVendidos }}</span>
+        <span class="label">Vendidos</span>
+      </div>
+    </div>
+
+    <div class="metric-card mantenimiento">
+      <ion-icon name="hammer-outline"></ion-icon>
+      <div class="info">
+        <span class="count">{{ totalMantenimiento }}</span>
+        <span class="label">Mantenimiento</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-box-neon">
+    <ion-searchbar 
+      placeholder="Buscar vehículo por marca o modelo..." 
+      animated="true"
+      debounce="150"
+      (ionInput)="filtrarVehiculos($event)">
+    </ion-searchbar>
+  </div>
+
+  <div class="form-container">
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="vehiculo.marca" name="marca" type="text" placeholder="Marca"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="vehiculo.modelo" name="modelo" type="text" placeholder="Modelo"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="vehiculo.anio" name="anio" type="number" placeholder="Año"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-select [(ngModel)]="vehiculo.estado" name="estado" placeholder="Estado" interface="popover">
+        <ion-select-option value="Disponible">Disponible</ion-select-option>
+        <ion-select-option value="Vendido">Vendido</ion-select-option>
+        <ion-select-option value="Mantenimiento">Mantenimiento</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="vehiculo.parte_afectada" name="parte_afectada" type="text" placeholder="Parte Afectada"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="vehiculo.cliente_nombre" name="cliente_nombre" type="text" placeholder="Cliente"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="vehiculo.cliente_telefono" name="cliente_telefono" type="tel" placeholder="Teléfono"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="vehiculo.cliente_dni" name="cliente_dni" type="text" placeholder="DNI"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="vehiculo.fecha_venta" name="fecha_venta" type="date" placeholder="Fecha de Venta"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" [color]="editandoId ? 'secondary' : 'primary'" class="guardar-btn" (click)="guardarVehiculo()">
+      {{ editandoId ? 'ACTUALIZAR REGISTRO' : 'GUARDAR REGISTRO' }}
+    </ion-button>
+
+    <ion-button *ngIf="editandoId" expand="block" color="medium" fill="clear" (click)="cancelarEdicion()">
+      Cancelar Edición
+    </ion-button>
+  </div>
+
+  <div style="width: 100%; max-width: 650px; margin: 0 auto;">
+    <ion-list *ngIf="vehiculosFiltrados.length > 0; else sinVehiculos" style="background: transparent;">
+      <ion-card *ngFor="let v of vehiculosFiltrados" class="vehiculo-card">
+        
+        <div *ngIf="v.estado === 'Mantenimiento' && esMantenimientoRetrasado(v.actualizado_at, v.estado)" 
+             style="background: rgba(255, 65, 108, 0.15); border-left: 4px solid #ff416c; padding: 10px; display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+          <ion-icon name="alert-outline" style="color: #ff416c; font-size: 20px;"></ion-icon>
+          <span style="color: #ffffff; font-size: 0.8rem; font-weight: bold; letter-spacing: 0.5px;">
+            ¡ALERTA: Más de 15 días en taller!
+          </span>
+        </div>
+
+        <ion-card-header>
+          <ion-card-title>{{ v.marca }} {{ v.modelo }} ({{ v.anio }})</ion-card-title>
+          <ion-card-subtitle>{{ v.estado }}</ion-card-subtitle>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <p><strong>Cliente:</strong> {{ v.cliente_nombre }}</p>
+          
+          <p style="display: flex; align-items: center; justify-content: space-between; margin: 4px 0;">
+            <span><strong>Teléfono:</strong> {{ v.cliente_telefono || 'N/A' }}</span>
+            
+            <ion-button *ngIf="v.cliente_telefono && v.estado === 'Mantenimiento'" 
+                        size="small" 
+                        fill="clear" 
+                        color="success" 
+                        (click)="enviarMensajeWhatsApp(v)"
+                        style="margin: 0; padding: 0; height: 24px; font-weight: bold; font-size: 0.8rem;">
+              <ion-icon slot="start" name="logo-whatsapp" style="font-size: 16px;"></ion-icon>
+              Avisar Al Cliente
+            </ion-button>
+          </p>
+
+          <p><strong>DNI:</strong> {{ v.cliente_dni || 'N/A' }}</p>
+          <p *ngIf="v.parte_afectada"><strong>Parte afectada:</strong> {{ v.parte_afectada }}</p>
+          <p *ngIf="v.fecha_venta"><strong>Fecha de venta:</strong> {{ v.fecha_venta }}</p>
+          
+          <hr style="opacity: 0.15; margin: 12px 0;">
+          
+          <div style="display: flex; justify-content: flex-end; gap: 8px;">
+            <ion-button size="small" fill="outline" color="primary" (click)="prepararEdicion(v)">
+              <ion-icon slot="start" name="pencil-outline"></ion-icon>
+              Editar
+            </ion-button>
+            <ion-button size="small" fill="outline" color="danger" (click)="eliminarVehiculo(v.id)">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+
+  <ng-template #sinVehiculos>
+    <div class="no-data">
+      <ion-icon name="car-outline" style="font-size: 48px; display: block; margin: 0 auto 10px auto; color: #506480;"></ion-icon>
+      <p>No hay vehículos que coincidan con la búsqueda o el almacén está vacío.</p>
+    </div>
+  </ng-template>
+</ion-content>
