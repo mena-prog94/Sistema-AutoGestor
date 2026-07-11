@@ -1,10 +1,9 @@
-// src/app/pages/register/register.page.ts
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { AuthService } from '../../services/auth'; // 👈 CORREGIDO: Ruta exacta según tu árbol de carpetas
+import { AuthService } from '../../services/auth'; // Asegúrate de que la ruta apunte bien a tu archivo de servicio
 import { addIcons } from 'ionicons';
 import { personAddOutline, personOutline, mailOutline, lockClosedOutline } from 'ionicons/icons';
 
@@ -48,11 +47,15 @@ export class RegisterPage {
       return;
     }
 
-    // Estructuramos el payload alineado con tu base de datos real
+    // Estructuramos el payload enviando tanto el formato en español como en inglés
+    // para garantizar compatibilidad total con el mapeo unificado de tu register.php
     const userData = {
       usuario: trimmedName,
+      username: trimmedName,
       correo: trimmedEmail,
-      clave: trimmedPassword
+      email: trimmedEmail,
+      clave: trimmedPassword,
+      password: trimmedPassword
     };
 
     // Consumimos el método register con tipado explícito para evitar error TS7006

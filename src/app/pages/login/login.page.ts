@@ -99,7 +99,8 @@ export class LoginPage {
 
     await alert.present();
   }
-private ejecutarSolicitudRecuperacion(correo: string) {
+
+  private ejecutarSolicitudRecuperacion(correo: string) {
     this.authService.recuperarClave({ correo }).subscribe({
       next: async (res: any) => {
         if (res && res.success) {
